@@ -1,0 +1,26 @@
+import json
+with open('home_work_js.json') as f:
+    hw_two = json.load(f)
+print(hw_two)
+
+import csv
+name_of_lines = ('number', 'name', 'age', 'phone')
+line_one = ['123467', 'Jack', '18', '233455']
+line_two = ['123448', 'Lily', '21', '233456']
+line_three = ['223469', 'Bob', '33', '233457']
+line_four = ['123420', 'Sem', '9', '233458']
+line_five = ['123491', 'Dora', '25', '233459']
+
+
+with open('home_work_two.csv', mode='w', encoding='utf-8') as f:
+    file_writer = csv.writer(f, delimiter=' ')
+    for item in (name_of_lines, line_one, line_two, line_three, line_four, line_five):
+        file_writer.writerow(item)
+
+print('-' * 35)
+
+with open('home_work_two.csv', encoding='utf-8') as f:
+    file_reader = csv.reader(f)
+    count = 0
+    for row in file_reader:
+        print(row)
