@@ -1,0 +1,6 @@
+dict_hw = {'123467': ('Jack', 18), '123448': ('Lily', 21), '223469': ('Bob', 33), '123420': ('Sem', 9),
+           '123491': ('Dora', 25)}
+
+import json
+with open('home_work_js.json', 'w') as f:
+    json.dump(dict_hw, f)
