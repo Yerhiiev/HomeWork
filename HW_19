@@ -1,0 +1,23 @@
+class Auto:
+    brand = 'Wolksvagen'
+    age = 5
+    color = 'Black'
+    mark = 'Golf'
+    weight = 1000
+
+    def __init__(self, age=5, brand='Wolksvagen', mark='Golf'):
+        self.age = age
+        self.brand = brand
+        self.mark = mark
+
+    def move(self):
+        print('move')
+
+    def stop(self):
+        print('stop')
+
+    def birthday(self):
+        while self.age:
+            self.age += 1
+            break
+        print(self.age)
