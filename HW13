@@ -1,0 +1,20 @@
+while True:
+    n = input('Введите число или желаете покинуть программу? (Q/E): ')
+    if n in ('q','e',):
+        break
+    else:
+        def whats_number(n):
+            for i in n.split():
+                j = i.replace(',','.').split('.')
+                if i.isdigit():
+                    print('вы ввели целое число:', n)
+                elif i[0] == '-' and i[1:].isdigit():
+                    print('вы ввели отрицательное целое число:', n)
+                elif len(j) == 2 and j[0].isdigit() and j[1].isdigit():
+                    print('вы ввели дробное число:', n)
+                elif len(j) == 2 and j[0].isdigit() <= 0 and j[1].isdigit():
+                    print('вы ввели отрицательное дробное число:', n)
+                else:
+                    print('вы ввели не корректное число', n)
+    whats_number(n)
+    continue
