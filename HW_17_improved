@@ -1,0 +1,34 @@
+import json
+
+with open('home_work_js.json', "r") as f:
+            data = json.loads(f.read())
+
+paris = list(data.items())
+new_paris = []
+
+for i in paris:
+        index = 0
+        i[1].insert(index, i[0])
+        new_paris.append(i[1])
+
+phone = ['7772032', '7775030', '7771523', '7772132', '7771260']
+new_paris_two = []
+
+for index, i in enumerate(new_paris):
+    new_paris_two.append(i.append(phone[index]))
+
+import csv
+
+name_of_lines = ['number', 'name', 'age', 'phone']
+
+with open('home_work_two.csv', mode='w', encoding='utf-8') as f:
+    file_writer = csv.writer(f, delimiter=' ')
+    file_writer.writerow(name_of_lines)
+    for row in new_paris:
+        file_writer.writerow(row)
+
+with open('home_work_two.csv', encoding='utf-8') as f:
+    file_reader = csv.reader(f)
+    count = 0
+    for row in file_reader:
+        print(row)
