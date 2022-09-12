@@ -1,0 +1,60 @@
+class Phone():
+    color = 'black'
+    apple = 'Apple'
+    last_model_iphone = 'Iphone 14'
+    made_in_usa = 'USA'
+    made_in_china = 'China'
+    huawei = 'Huawei'
+    last_model_h = 'Huawei P smart'
+    made_in_japan = 'Japan'
+    sony = 'Sony'
+    last_model_sony = 'NoName'
+    guarantee = '1 month'
+    @staticmethod
+    def first_method():
+        print('Price 1000$')
+        print('guarantee: 3 years')
+
+    @staticmethod
+    def never():
+        print('price 2000$')
+        print('Ни в коем случае не покупать!')
+
+    @classmethod
+    def characteristics_iphone(cls):
+        print('Made in:', cls.made_in_usa)
+        print('Company:', cls.apple)
+        print('Last Model:', cls.last_model_iphone)
+        
+    @classmethod
+    def characteristics_huawei(cls):
+        print('Made in:', cls.made_in_china)
+        print('Company:', cls.huawei)
+        print('Last Model:', cls.last_model_h)
+        print('Guarantee:', cls.guarantee)
+        print('Color:', cls.color)
+        
+    @classmethod
+    def characteristics_sony(cls):
+        print('Made in:', cls.made_in_japan)
+        print('Company:', cls.sony)
+        print('Last Model:', cls.last_model_sony)
+        print('Guarantee:', cls.guarantee)
+        print('Color:', cls.color)
+
+    def __init__(self, color):
+        self.color = color
+
+a = Phone('Color: red')
+b = Phone('blue')
+c = Phone('Green')
+
+a.characteristics_iphone()
+print(a.color)
+Phone.first_method()
+print('-' * 50)
+b.characteristics_huawei()
+b.first_method()
+print('-' * 50)
+c.characteristics_sony()
+Phone.never()
