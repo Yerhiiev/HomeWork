@@ -1,0 +1,36 @@
+import csv
+
+hw_read = []
+hw_read2 = filter(None, hw_read)
+hw_read3 = []
+
+with open('home_work_two.csv', encoding='utf-8') as f:
+    file_reader = csv.reader(f)
+    for row in file_reader:
+        hw_read.append(row)
+
+for i in hw_read2:
+    hw_read3.append(i)
+
+import openpyxl
+
+wb = openpyxl.Workbook()
+wb.create_sheet(title='Первый лист', index=0)
+sheet = wb['Первый лист']
+
+for i_index, i in enumerate(hw_read3):
+    for col_index, value in enumerate(i[0].split()):
+        cell = sheet.cell(row=col_index+1, column=i_index+1)
+        cell.value = value
+
+name_of_fields = [' ', 'Person 1', 'Person 2', 'Person 3', 'Person 4', 'Person 5']
+sheet.delete_rows(3)
+sheet.insert_rows(1, amount=1)
+
+for row in sheet:
+    for i_index, i in enumerate(name_of_fields):
+        for col_index, value in enumerate(i.split(',')):
+            cell = sheet.cell(row=1, column=i_index+1)
+            cell.value = value
+
+wb.save('task_03.xlsx')
