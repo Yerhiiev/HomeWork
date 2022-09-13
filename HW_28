@@ -1,0 +1,35 @@
+import sqlite3
+import os
+
+from typing import List
+
+db_pass = os.path.join(os.getcwd(), 'chinook.db')
+connection = sqlite3.connect(db_pass)
+
+def excute_query(connection,
+                 query_sql: str) ->List:
+    ...
+    cur = connection.cursor()
+    result = cur.execute(query_sql)
+    return result
+def unwrapp_query_result(records: List):
+    for record in records:
+        print(*record)
+
+def get_unitprice():
+    query_sql = f'''
+        CREATE VIEW report_vendor AS
+        SELECT UnitPrice, Quantity, UnitPrice*Quantity AS summa
+            FROM invoice_items;
+        '''
+    #result = excute_query(connection, query_sql)
+    #unwrapp_query_result(result)
+
+    query_sql = f'''
+            SELECT SUM(summa) 
+                FROM report_vendor;
+        '''
+    result = excute_query(connection, query_sql)
+    unwrapp_query_result(result)
+
+get_unitprice()
