@@ -1,0 +1,15 @@
+b1 = 1
+n = 1
+q = int(input('Введите число: '))
+def simple_generator(valuem):
+    while True:
+        valuem = (b1 * q ** (n-1))
+        yield valuem
+
+
+for item in simple_generator(0):
+    n += 1
+    if item > 10000:
+        break
+    print(item)
+    
