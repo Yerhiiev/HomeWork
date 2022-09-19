@@ -1,0 +1,53 @@
+import math
+
+a = input()
+b = input()
+
+class Calculator:
+    def sum(self, a, b):
+        try:
+            result = int(a) + int(b)
+        except ValueError:
+            result = a + b
+        return result
+
+    def sub(self, a, b):
+        try:
+            result = int(a) - int(b)
+        except ValueError:
+            result = a - b
+        return result
+
+    def mul(self, a, b):
+        try:
+            result = int(a) * int(b)
+        except TypeError:
+            result = print('Операция невозможна')
+        except ValueError:
+            result = print('Операция невозможна')
+        return result
+
+    def div(self, a, b):
+        try:
+            result = a / b
+        except ZeroDivisionError:
+            result = 0
+        return result
+
+    def exp(self, a, b):
+        try:
+            result = int(a) ** int(b)
+        except TypeError:
+            result = print('Операция невозможна')
+        except ValueError:
+            result = print('Операция невозможна')
+        return result
+    def sqr(self, a):
+        try:
+            result = math.sqrt(int(a))
+        except ValueError:
+            result = print('Введите число')
+        return result
+
+summa = Calculator()
+print(summa.sum(a, b))
