@@ -1,0 +1,95 @@
+from openpyxl import load_workbook
+from datetime import date
+import openpyxl
+
+fn = r'C:\Users\USER\PycharmProjects\home_works\Diploma_baza.xlsx'
+wb = load_workbook(fn)
+sheet = wb['Первый лист']
+ws = sheet
+name_of_fields = ['Фамилия', 'Имя', 'Отчество', 'Дата рождения', 'Дата смерти', 'Возраст']
+
+for row in sheet:
+    for i_index, i in enumerate(name_of_fields):
+        for col_index, value in enumerate(i.split(',')):
+            cell = sheet.cell(row=1, column=i_index+1)
+            cell.value = value
+
+print('Здравствуй, дорогой друг! Вас приветствует компания "Рога и Копыта!" ')
+while True:
+    print('Если желаете загрузить человека в базу данных, нажмите 1')
+    print('Если желаете найти человека в базе, нажмите 2 ')
+    print('Если желаете отправится к нашим конкурентам, нажмите 3')
+    n = input('Каков ваш выбор?: ')
+    if n in ('3'):
+        print('Ты нам больше не друг! Прощай...')
+        break
+    elif n in ('2'):
+        find_person = input('Кого вы ищете?: ')
+        book = openpyxl.open('Diploma_baza.xlsx', read_only=True)
+        shet = book.active
+        for row in range(1, shet.max_row+1):
+            f_surname = sheet[row][0].value
+            f_name = sheet[row][1].value
+            f_patronymic = sheet[row][2].value
+            f_date_of_birth = sheet[row][3].value
+            f_date_of_death = sheet[row][4].value
+            data = (f_surname, f_name, f_patronymic, f_date_of_birth, f_date_of_death)
+            def calculate_age():
+                while True:
+                    if len(f_date_of_death) <= 10:
+                        for i in f_date_of_birth.split():
+                            i.split('.,/-')
+                            day = i[0:2]
+                            month = i[3:5]
+                            year = i[6:10]
+                            for j in f_date_of_death.split():
+                                j.split('.,/')
+                                dday = j[0:2]
+                                dmonth = j[3:5]
+                                dyear = j[6:10]
+                                birthday = date(int(year), int(month), int(day)).strftime("%Y%m%d")
+                                deathday = date(int(dyear), int(dmonth), int(dday)).strftime("%Y%m%d")
+                                let = (int(deathday) - int(birthday)) // 10000
+                                return let
+                    else:
+                        for i in f_date_of_birth.split():
+                            i.split('.,/')
+                            day = i[0:2]
+                            month = i[3:5]
+                            year = i[6:10]
+                            birthday = date(int(year), int(month), int(day)).strftime("%Y%m%d")
+                            today = date.today().strftime("%Y%m%d")
+                            let = (int(today) - int(birthday)) // 10000
+                            return let
+
+            if find_person in data:
+                print('Вы искали этого человека?: ', *data, 'Возраст:', calculate_age(), end='\n')
+        print('Продолжить, нажмите 1. Завершить, любой другой символ')
+        n = input('Каков ваш выбор?: ')
+        if n in ('1'):
+            continue
+        else:
+            break
+    elif n in ('1'):
+        print('Введите данные о человеке')
+        surname = input('Фамилия: ')
+        name = input('Имя: ')
+        patronymic = input('Отчество: ')
+        date_of_birth = input('Дата рождения: ')
+        date_of_death = input('Дата смерти(если есть): ')
+        data = (surname, name, patronymic, date_of_birth, date_of_death)
+        ws.append(data)
+        wb.save('Diploma_baza.xlsx')
+        wb.close()
+        print('Продолжить, нажмите 1. Завершить, любой другой символ')
+        n = input('Каков ваш выбор?: ')
+        if n in ('1'):
+            continue
+        else:
+            break
+    else:
+        print('Уважаемый, ты что то напутал, попробуй еще')
+        continue
+
+wb.save('Diploma_baza.xlsx')
+wb.close()
